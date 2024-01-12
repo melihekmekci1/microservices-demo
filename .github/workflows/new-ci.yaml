@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     # run on pushes to melih branch
     branches:
-      - melih
+      - main
     paths-ignore:
       - '**/README.md'
       - 'kustomize/**'
@@ -51,6 +51,7 @@ jobs:
             cd ../..
             done
 
+          pwd
           cd helm-chart/templates
           sed -i '' "s|image:.*|image: docker.io/melihekmekci/adservice:$IMAGE_TAG|" adservice.yaml
           sed -i '' "s|image:.*|image: docker.io/melihekmekci/cartservice:$IMAGE_TAG|" cartservice.yaml
