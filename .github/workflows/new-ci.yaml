@@ -56,7 +56,7 @@ jobs:
           sed -i  "s|image:.*|image: docker.io/melihekmekci/adservice:$IMAGE_TAG|" adservice.yaml
           sed -i  "s|image:.*|image: docker.io/melihekmekci/cartservice:$IMAGE_TAG|" cartservice.yaml
           sed -i  "s|image:.*|image: docker.io/melihekmekci/checkoutservice:$IMAGE_TAG|" checkoutservice.yaml
-          sed -i  "s|image:.*|image: docker.io/melihekmekci/currenyservice:$IMAGE_TAG|" currencyservice.yaml
+          sed -i  "s|image:.*|image: docker.io/melihekmekci/currencyservice:$IMAGE_TAG|" currencyservice.yaml
           sed -i  "s|image:.*|image: docker.io/melihekmekci/emailservice:$IMAGE_TAG|" emailservice.yaml
           sed -i  "s|image:.*|image: docker.io/melihekmekci/frontend:$IMAGE_TAG|" frontend.yaml
           sed -i  "s|image:.*|image: docker.io/melihekmekci/loadgenerator:$IMAGE_TAG|" loadgenerator.yaml
