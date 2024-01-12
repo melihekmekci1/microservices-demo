@@ -1,0 +1,76 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: "Continuous Integration - Melih/Release"
+on:
+  workflow_dispatch:
+    # run on pushes to melih branch
+    branches:
+      - melih
+    paths-ignore:
+      - '**/README.md'
+      - 'kustomize/**'
+      - '.github/workflows/kustomize-build-ci.yaml'
+      - 'terraform/**'
+      - '.github/workflows/terraform-validate-ci.yaml'
+      - 'helm-chart/**'
+      - '.github/workflows/helm-chart-ci.yaml'
+jobs:
+  build-and-push-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: "melihekmekci"
+          password: "melih2253586"
+
+      # Example of building and pushing the adservice Docker image
+      - name: Build and Push Docker Images
+        run: |
+          SERVICES="adservice checkoutservice currencyservice emailservice frontend loadgenerator paymentservice productcatalogservice recommendationservice shippingservice"
+          for SERVICE in $SERVICES; do
+            echo "Building and pushing $SERVICE..."
+            cd src/$SERVICE
+            IMAGE_TAG="${{ github.run_number }}"
+            docker build -t docker.io/melihekmekci/$SERVICE:$IMAGE_TAG .
+            docker push docker.io/melihekmekci/$SERVICE:$IMAGE_TAG
+            cd ../..
+            done
+
+          cd helm-chart/templates
+          sed -i '' "s|image:.*|image: docker.io/melihekmekci/adservice:$IMAGE_TAG|" adservice.yaml
+          sed -i '' "s|image:.*|image: docker.io/melihekmekci/cartservice:$IMAGE_TAG|" cartservice.yaml
+          sed -i '' "s|image:.*|image: docker.io/melihekmekci/checkoutservice:$IMAGE_TAG|" checkoutservice.yaml
+          sed -i '' "s|image:.*|image: docker.io/melihekmekci/currenyservice:$IMAGE_TAG|" currencyservice.yaml
+          sed -i '' "s|image:.*|image: docker.io/melihekmekci/emailservice:$IMAGE_TAG|" emailservice.yaml
+          sed -i '' "s|image:.*|image: docker.io/melihekmekci/frontend:$IMAGE_TAG|" frontend.yaml
+          sed -i '' "s|image:.*|image: docker.io/melihekmekci/loadgenerator:$IMAGE_TAG|" loadgenerator.yaml
+          sed -i '' "s|image:.*|image: docker.io/melihekmekci/paymentservice:$IMAGE_TAG|" paymentservice.yaml
+          sed -i '' "s|image:.*|image: docker.io/melihekmekci/productcatalogservice:$IMAGE_TAG|" productcatalogservice.yaml
+
+          git add adservice.yaml
+          git add cartservice.yaml
+          git add checkoutservice.yaml
+          git add currencyservice.yaml
+          git add emailservice.yaml
+          git add frontend.yaml
+          git add loadgenerator.yaml
+          git add paymentservice.yaml
+          git add productcatalogservice.yaml
+          git commit -m "Update deployments"
+          git push
+          
