@@ -51,7 +51,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: docker.io/melihekmekci/emailservice:16
+        image: docker.io/melihekmekci/emailservice:19
         ports:
         - containerPort: 8080
         env:

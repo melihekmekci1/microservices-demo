@@ -80,7 +80,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: docker.io/melihekmekci/loadgenerator:16
+        image: docker.io/melihekmekci/loadgenerator:19
         env:
         - name: FRONTEND_ADDR
           value: "{{ .Values.frontend.name }}:80"
@@ -94,7 +94,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: docker.io/melihekmekci/loadgenerator:16
+        image: docker.io/melihekmekci/loadgenerator:19
         env:
         - name: FRONTEND_ADDR
           value: "{{ .Values.frontend.name }}:80"

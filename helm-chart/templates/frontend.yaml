@@ -52,7 +52,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: docker.io/melihekmekci/frontend:16
+          image: docker.io/melihekmekci/frontend:19
           ports:
           - containerPort: 8080
           readinessProbe:

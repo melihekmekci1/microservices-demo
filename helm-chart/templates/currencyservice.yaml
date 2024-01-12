@@ -51,7 +51,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: docker.io/melihekmekci/currencyservice:16
+        image: docker.io/melihekmekci/currencyservice:19
         ports:
         - name: grpc
           containerPort: 7000

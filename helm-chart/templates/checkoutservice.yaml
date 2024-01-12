@@ -50,7 +50,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: docker.io/melihekmekci/checkoutservice:16
+        image: docker.io/melihekmekci/checkoutservice:19
         ports:
         - containerPort: 5050
         readinessProbe:
