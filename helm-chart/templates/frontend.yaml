@@ -52,7 +52,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: {{ .Values.images.repository }}/{{ .Values.frontend.name }}:{{ .Values.images.tag | default .Chart.AppVersion }}
+          image: docker.io/melihekmekci/frontend:15
           ports:
           - containerPort: 8080
           readinessProbe:

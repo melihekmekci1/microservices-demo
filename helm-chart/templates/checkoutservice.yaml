@@ -50,7 +50,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: {{ .Values.images.repository }}/{{ .Values.checkoutService.name }}:{{ .Values.images.tag | default .Chart.AppVersion }}
+        image: docker.io/melihekmekci/checkoutservice:15
         ports:
         - containerPort: 5050
         readinessProbe:

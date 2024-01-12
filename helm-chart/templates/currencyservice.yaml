@@ -51,7 +51,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: {{ .Values.images.repository }}/{{ .Values.currencyService.name }}:{{ .Values.images.tag | default .Chart.AppVersion }}
+        image: docker.io/melihekmekci/currenyservice:15
         ports:
         - name: grpc
           containerPort: 7000

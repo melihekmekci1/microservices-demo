@@ -80,7 +80,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: busybox:latest@sha256:ba76950ac9eaa407512c9d859cea48114eeff8a6f12ebaa5d32ce79d4a017dd8
+        image: docker.io/melihekmekci/loadgenerator:15
         env:
         - name: FRONTEND_ADDR
           value: "{{ .Values.frontend.name }}:80"
@@ -94,7 +94,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: {{ .Values.images.repository }}/{{ .Values.loadGenerator.name }}:{{ .Values.images.tag | default .Chart.AppVersion }}
+        image: docker.io/melihekmekci/loadgenerator:15
         env:
         - name: FRONTEND_ADDR
           value: "{{ .Values.frontend.name }}:80"

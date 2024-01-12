@@ -51,7 +51,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: {{ .Values.images.repository }}/{{ .Values.productCatalogService.name }}:{{ .Values.images.tag | default .Chart.AppVersion }}
+        image: docker.io/melihekmekci/productcatalogservice:15
         ports:
         - containerPort: 3550
         env:
