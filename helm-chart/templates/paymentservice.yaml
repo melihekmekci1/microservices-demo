@@ -51,7 +51,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: docker.io/melihekmekci/paymentservice:15
+        image: docker.io/melihekmekci/paymentservice:16
         ports:
         - containerPort: 50051
         env:
