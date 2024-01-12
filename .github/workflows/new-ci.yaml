@@ -62,7 +62,8 @@ jobs:
           sed -i  "s|image:.*|image: docker.io/melihekmekci/loadgenerator:$IMAGE_TAG|" loadgenerator.yaml
           sed -i  "s|image:.*|image: docker.io/melihekmekci/paymentservice:$IMAGE_TAG|" paymentservice.yaml
           sed -i  "s|image:.*|image: docker.io/melihekmekci/productcatalogservice:$IMAGE_TAG|" productcatalogservice.yaml
-
+          git config --global user.email "melih@example.com"
+          git config --global user.name "Melih Ekmekçi"
           git add adservice.yaml
           git add cartservice.yaml
           git add checkoutservice.yaml
